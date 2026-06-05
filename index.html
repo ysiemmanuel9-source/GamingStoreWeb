@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gaming Store - Tienda Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/logo-gc.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+  <div class="grid-bg"></div>
+
+  <section class="access-gate" id="accessGate">
+    <div class="access-card reveal">
+      <img class="access-logo" src="assets/logo-gc.png" alt="Logo Gaming Store" />
+      <p class="eyebrow">Acceso seguro</p>
+      <h1>Gaming Store</h1>
+      <p class="auth-hint">Si eres admin o ayudante, entra con usuario y contrasena. Si eres cliente, crea tu perfil o inicia sesion.</p>
+
+      <form class="auth-form" id="staffLoginForm">
+        <h3>Admin o ayudante</h3>
+        <label>
+          Usuario
+          <input id="staffUsername" type="text" autocomplete="username" placeholder="Usuario staff" required />
+        </label>
+        <label>
+          Contrasena
+          <input id="staffPassword" type="password" autocomplete="current-password" placeholder="Contrasena staff" required />
+        </label>
+        <button class="primary-btn full" type="submit">Entrar al panel</button>
+      </form>
+
+      <button class="ghost-btn full" id="showClientAccessBtn" type="button">Soy cliente</button>
+
+      <div class="client-access hidden" id="clientAccess">
+        <div class="auth-tabs">
+          <button class="tab active" data-client-tab="login" type="button">Login cliente</button>
+          <button class="tab" data-client-tab="register" type="button">Crear perfil</button>
+        </div>
+
+        <form class="auth-form" id="clientLoginForm">
+          <label>
+            Usuario
+            <input id="clientLoginUsername" type="text" autocomplete="username" placeholder="Tu usuario" required />
+          </label>
+          <label>
+            Contrasena
+            <input id="clientLoginPassword" type="password" autocomplete="current-password" placeholder="Tu contrasena" required />
+          </label>
+          <button class="primary-btn full" type="submit">Entrar como cliente</button>
+        </form>
+
+        <form class="auth-form hidden" id="clientRegisterForm">
+          <label>
+            Nombre
+            <input id="clientRegisterName" type="text" autocomplete="name" placeholder="Tu nombre" required />
+          </label>
+          <label>
+            Usuario
+            <input id="clientRegisterUsername" type="text" autocomplete="username" placeholder="Usuario nuevo" required />
+          </label>
+          <label>
+            Email
+            <input id="clientRegisterEmail" type="email" autocomplete="email" placeholder="correo@ejemplo.com" />
+          </label>
+          <label>
+            WhatsApp
+            <input id="clientRegisterContact" type="text" autocomplete="tel" placeholder="8090000000" />
+          </label>
+          <label>
+            Contrasena
+            <input id="clientRegisterPassword" type="password" autocomplete="new-password" placeholder="Minimo 6 caracteres" required />
+          </label>
+          <button class="primary-btn full" type="submit">Crear perfil</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <header class="site-header app-shell hidden" id="siteHeader">
+    <a class="brand" href="#inicio" aria-label="Inicio">
+      <img class="brand-logo" src="assets/logo-gc.png" alt="Logo Gaming Store" />
+      <span>
+        <strong data-store-name>GAMING STORE</strong>
+        <small>Tienda digital premium</small>
+      </span>
+    </a>
+
+    <nav class="nav-links" aria-label="Navegacion principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#productos">Productos</a>
+      <a href="#contacto">Contacto</a>
+      <a href="#soporte">Soporte</a>
+    </nav>
+
+    <div class="header-actions">
+      <span class="account-badge" id="accountBadge">Invitado</span>
+      <button class="cart-button" id="cartOpenBtn" type="button">
+        Carrito <span id="cartCount">0</span>
+      </button>
+      <button class="ghost-btn small" id="logoutBtn" type="button">Salir</button>
+    </div>
+  </header>
+
+  <main class="app-shell hidden" id="siteMain">
+    <section class="hero" id="inicio">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">Free Fire style + gamer premium</p>
+        <h1><span data-store-name>GAMING STORE</span> para productos digitales.</h1>
+        <p class="hero-text">
+          Compra facil: elige el producto, selecciona el tiempo disponible,
+          agrega al carrito y envia tu pedido directo por WhatsApp.
+        </p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#productos">Ver productos</a>
+          <button class="ghost-btn" id="heroCartBtn" type="button">Ver carrito</button>
+        </div>
+        <div class="hero-stats" aria-label="Resumen">
+          <span><strong>8</strong> productos base</span>
+          <span><strong>USD</strong> precios</span>
+          <span><strong>WA</strong> pedido directo</span>
+        </div>
+      </div>
+
+      <div class="hero-card reveal">
+        <div class="phone-frame">
+          <div class="phone-top"></div>
+          <img src="assets/producto-gaming-premium.png" alt="Producto gaming premium" />
+          <div class="scan-line"></div>
+        </div>
+        <div class="floating-badge badge-one">Neon UI</div>
+        <div class="floating-badge badge-two">Carrito + pedido</div>
+      </div>
+    </section>
+
+    <section class="section-panel" id="productos">
+      <div class="section-heading">
+        <p class="eyebrow">Catalogo</p>
+        <h2>Elige producto y tiempo</h2>
+        <p>Selecciona semana, mes, ano u otra duracion. El carrito suma todo automaticamente.</p>
+      </div>
+      <div class="products-grid" id="productsGrid"></div>
+    </section>
+
+    <section class="split-section" id="contacto">
+      <div class="glass-card reveal">
+        <p class="eyebrow">Contacto</p>
+        <h2>Pago guiado por WhatsApp</h2>
+        <p>
+          Cuando el cliente confirma el carrito, la pagina crea el resumen del pedido y lo manda
+          por WhatsApp. El dueno configura el numero y los metodos de pago.
+        </p>
+        <div class="payment-list" id="paymentList"></div>
+      </div>
+      <div class="glass-card reveal">
+        <p class="eyebrow">Compra rapida</p>
+        <h2>Hecha para clientes</h2>
+        <p>
+          La gente no necesita crear cuenta. Solo escoge productos, pone sus datos de contacto
+          y manda el pedido con el total calculado.
+        </p>
+        <ul class="check-list">
+          <li>Seleccion de tiempo por producto</li>
+          <li>Carrito con total automatico</li>
+          <li>Pedido directo al WhatsApp</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="support-section" id="soporte">
+      <div class="support-content reveal">
+        <p class="eyebrow">Soporte</p>
+        <h2>Discord y ayuda rapida</h2>
+        <p>Entra al Discord oficial para soporte, preguntas y ayuda con tu pedido.</p>
+        <div class="support-actions">
+          <a class="primary-btn" id="supportLink" href="https://discord.gg/bGCWtKXT" target="_blank" rel="noreferrer">Entrar al Discord</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="admin-section hidden staff-panel" id="admin">
+      <div class="section-heading">
+        <p class="eyebrow">Panel</p>
+        <h2>Acceso privado</h2>
+        <p>Solo el dueno puede editar productos, fotos, precios, ventas y ajustes.</p>
+        <button class="ghost-btn hidden" id="adminLogoutBtn" type="button">Cerrar admin</button>
+      </div>
+
+      <div class="admin-workspace" id="adminWorkspace">
+        <div class="admin-grid">
+          <form class="admin-card" id="productForm">
+            <input type="hidden" id="productId" />
+            <input type="hidden" id="productImageData" />
+            <div class="admin-card-head">
+              <div>
+                <p class="eyebrow">Producto</p>
+                <h3 id="productFormTitle">Agregar producto</h3>
+              </div>
+              <button class="ghost-btn small" id="resetProductForm" type="button">Limpiar</button>
+            </div>
+
+            <label>
+              Nombre
+              <input id="productName" type="text" placeholder="Ejemplo: Panel Basico" required />
+            </label>
+
+            <label>
+              Categoria
+              <input id="productCategory" type="text" placeholder="Producto digital" required />
+            </label>
+
+            <label>
+              Descripcion
+              <textarea id="productDescription" rows="4" placeholder="Descripcion visible para el cliente" required></textarea>
+            </label>
+
+            <label class="file-field">
+              Foto del producto
+              <input id="productImage" type="file" accept="image/*" />
+              <span>Sube PNG, JPG o WEBP</span>
+            </label>
+
+            <img class="image-preview hidden" id="productPreview" alt="Vista previa del producto" />
+
+            <div class="duration-title">
+              <strong>Tiempos y precios</strong>
+              <button class="ghost-btn small" id="addDurationBtn" type="button">+ Tiempo</button>
+            </div>
+            <div id="durationEditor" class="duration-editor"></div>
+
+            <label class="inline-check">
+              <input id="productActive" type="checkbox" checked />
+              Mostrar en la tienda
+            </label>
+
+            <button class="primary-btn full" type="submit">Guardar producto</button>
+          </form>
+
+          <div class="admin-card">
+            <div class="admin-card-head">
+              <div>
+                <p class="eyebrow">Inventario</p>
+                <h3>Productos actuales</h3>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Tiempos</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="productsTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-grid lower admin-only">
+          <form class="admin-card" id="settingsForm">
+            <p class="eyebrow">Ajustes</p>
+            <h3>Tienda y pagos</h3>
+            <label>
+              Nombre de la tienda
+              <input id="settingsStoreName" type="text" />
+            </label>
+            <label>
+              WhatsApp para pedidos
+              <input id="settingsWhatsapp" type="text" placeholder="Ejemplo: 18090000000" />
+            </label>
+            <label>
+              Link de soporte Discord
+              <input id="settingsSupport" type="url" />
+            </label>
+            <label>
+              Metodos de pago
+              <input id="settingsPayments" type="text" placeholder="PayPal, Yape, BBVA" />
+            </label>
+            <button class="primary-btn full" type="submit">Guardar ajustes</button>
+          </form>
+
+          <div class="admin-card">
+            <div class="admin-card-head">
+              <div>
+                <p class="eyebrow">Ventas</p>
+                <h3>Pedidos recibidos</h3>
+              </div>
+              <button class="ghost-btn small" id="clearOrdersBtn" type="button">Vaciar</button>
+            </div>
+            <div class="orders-list" id="ordersList"></div>
+          </div>
+
+          <div class="admin-card users-card">
+            <div class="admin-card-head">
+              <div>
+                <p class="eyebrow">Usuarios</p>
+                <h3>Clientes y staff</h3>
+              </div>
+              <button class="ghost-btn small" id="refreshUsersBtn" type="button">Actualizar</button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Usuario</th>
+                    <th>Rol</th>
+                    <th>Contacto</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="usersTable"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <div class="cart-head">
+      <div>
+        <p class="eyebrow">Compra</p>
+        <h3>Tu carrito</h3>
+      </div>
+      <button class="icon-btn" id="cartCloseBtn" type="button" aria-label="Cerrar carrito">x</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <form class="buyer-form" id="buyerForm">
+      <p class="auth-hint" id="buyerProfileText">El pedido se guarda con tu perfil de cliente.</p>
+      <label>
+        Metodo de pago preferido
+        <select id="buyerPayment" required></select>
+      </label>
+      <label>
+        Nota opcional
+        <textarea id="buyerNote" rows="3" placeholder="Ejemplo: quiero pagar por PayPal"></textarea>
+      </label>
+    </form>
+    <div class="cart-total">
+      <span>Total final</span>
+      <strong id="cartTotal">$0.00 USD</strong>
+    </div>
+    <button class="primary-btn full" id="checkoutBtn" type="button">Enviar pedido por WhatsApp</button>
+  </aside>
+
+  <div class="overlay hidden" id="overlay"></div>
+
+  <div class="toast hidden" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
