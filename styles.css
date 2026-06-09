@@ -56,6 +56,24 @@ select {
   font: inherit;
 }
 
+select {
+  color-scheme: dark;
+}
+
+select option {
+  color: var(--text);
+  background-color: #0c1224;
+}
+
+select option:checked {
+  color: #061208;
+  background: var(--green) linear-gradient(0deg, var(--green), var(--green));
+}
+
+select option:disabled {
+  color: #71809a;
+}
+
 button {
   cursor: pointer;
 }
